@@ -1,38 +1,43 @@
 const Header = ({course}) => <h1>{course}</h1> 
 
-const Part = ({name,exercises}) => (
-  <p>{name} {exercises}</p>
+const Part = ({ part }) => (
+  <p>{part.name} {part.exercises}</p>
 )
 
-const Content = ({part1, exercises1, part2, exercises2, part3, exercises3}) => (
+const Content = ({ part1, part2, part3 }) => (
   <div>
-    <Part name={part1} exercises={exercises1}/>
-    <Part name={part2} exercises={exercises2}/>
-    <Part name={part3} exercises={exercises3}/>
+    <Part part={part1} />
+    <Part part={part2} />
+    <Part part={part3} />
   </div>
 )
 
-const Total = ({ exercises1, exercises2, exercises3 }) => (
-  <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
-)
+const Total = ({ part1, part2, part3 }) => {
+  const total = part1.exercises + part2.exercises + part3.exercises
+  return <p>Number of exercises {total}</p>
+}
+
 
 const App = () => {
   const course = 'Industry Elective 1'
-  const part1 = 'Information Management 2'
-  const exercises1 = 3
-  const part2 = 'Project Management for IT'
-  const exercises2 = 3
-  const part3 = 'Application Development and Emerging Technologies'
-  const exercises3 = 3
+  const part1 = {
+    name: 'Information Management 2',
+    exercises: 3
+  }
+  const part2 = {
+    name: 'Project Management for IT',
+    exercises: 3
+  }
+  const part3 = {
+    name: 'Application Development and Emerging Technologies',
+    exercises: 3
+  }
 
   return (
-     <div>
+    <div>
       <Header course={course} />
-      <Content 
-        part1={part1} exercises1={exercises1}
-        part2={part2} exercises2={exercises2}
-        part3={part3} exercises3={exercises3} />
-      <Total exercises1={exercises1} exercises2={exercises2} exercises3={exercises3} />
+      <Content part1={part1} part2={part2} part3={part3} />
+      <Total part1={part1} part2={part2} part3={part3} />
     </div>
   )
 }
